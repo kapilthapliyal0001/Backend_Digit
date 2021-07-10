@@ -44,6 +44,20 @@ userRouter.get("/", async (req, res, next) => {
   }
 });
 
+//Get a specific user
+userRouter.get("/:id", async (req, res, next) => {
+  try {
+    const names = await UserModel.findById(req.params.id);
+    console.log(names);
+    res.send(names);
+  } catch (error) {
+    console.log(error);
+    next(
+      createError(500, "An Error has occured while searching for the user!")
+    );
+  }
+});
+
 userRouter.put("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
