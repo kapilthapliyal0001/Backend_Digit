@@ -3,11 +3,7 @@ const {Schema, model} = mongoose;
 
 const userSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    score: {
+    visitor: {
       type: Number,
       required: true,
     },
