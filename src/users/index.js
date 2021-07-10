@@ -8,7 +8,7 @@ const userRouter = express.Router();
 
 // User Routes
 
-//  POST the players Result;
+//  POST the Result;
 userRouter.post("/", async (req, res, next) => {
   try {
     const newUser = new UserModel(req.body);
@@ -41,6 +41,23 @@ userRouter.get("/", async (req, res, next) => {
     next(
       createError(500, "An Error has occured while searching for the user!")
     );
+  }
+});
+
+userRouter.put("/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const updateVisitor = await UserModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    if (updateVisitor) {
+      res.send(updateVisitor);
+    } else {
+      next(createError(404, `User with _id ${id} not found!`));
+    }
+  } catch (error) {
+    console.log(error);
+    next(createError(500, "An error has occured while searching for the user"));
   }
 });
 
