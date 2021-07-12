@@ -15,7 +15,12 @@ server.use(cors());
 server.use(express.json());
 
 // Cross Origin Playform Verification;
-const whiteList = [process.env.FRONTEND_URL];
+const whiteList = [
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL2,
+  process.env.FRONTEND_URL3,
+  process.env.FRONTEND_URL4,
+];
 
 server.use(
   cors({
